@@ -6,22 +6,25 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get('/auth/me');
-        setUser(response.data);
-      } catch (err) {
-        console.error('Failed to fetch user', err);
-      }
-    };
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get('/auth/me'); // backend route to get current user
+      setUser(response.data);
+    } catch (err) {
+      setUser(null);
+    }
+  };
 
-    fetchUser();
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      fetchUser();
+    }
   }, []);
 
-  const login = (token) => {
+  const login = async (token) => {
     localStorage.setItem('token', token);
-    fetchUser();
+    await fetchUser(); // fetch user after login
   };
 
   const logout = () => {
