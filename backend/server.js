@@ -1,7 +1,10 @@
+require("dotenv").config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const authRoutes = require("./routes/auth");
+const authMiddleware = require("./middleware/authMiddleware");
 
 const scanRoutes = require('./routes/scan');
 const compatibilityRoutes = require('./routes/compatibility');
@@ -22,6 +25,10 @@ mongoose.connect('mongodb://localhost:27017/pcChecker')
 // Routes
 app.use('/api/scan', scanRoutes);
 app.use('/api/compatibility', compatibilityRoutes);
+
+app.get("/api/test/protected", authMiddleware, (req, res) => {
+  res.json({ message: "You have access to this protected route!", user: req.user });
+});
 
 // Server
 const PORT = process.env.PORT || 5000;

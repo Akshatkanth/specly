@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+require("dotenv").config(); // Load .env variables
 
 const router = express.Router();
 
@@ -23,7 +24,7 @@ router.post("/signup", async (req, res) => {
     await user.save();
 
     // create token
-    const token = jwt.sign({ id: user._id }, "jwtSecret", { expiresIn: "1h" });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
     res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
   } catch (err) {
@@ -45,7 +46,7 @@ router.post("/login", async (req, res) => {
     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
 
     // create token
-    const token = jwt.sign({ id: user._id }, "jwtSecret", { expiresIn: "1h" });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
     res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
   } catch (err) {
