@@ -14,16 +14,14 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <div className="container mx-auto px-4 py-6">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/scan" element={<Scan />} />
-          <Route path="/compatibility" element={<Compatibility />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/shop" element={<Shop />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/scan" element={<Scan />} />
+        <Route path="/compatibility" element={<Compatibility />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/shop" element={<Shop />} />
+      </Routes>
     </Router>
   );
 }
