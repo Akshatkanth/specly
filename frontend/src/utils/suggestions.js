@@ -31,12 +31,11 @@ const SEARCH_URLS = {
 
 export function getSuggestions(specs) {
   const suggestions = [];
-
   if (specs.cpu && specs.cpu.cores < 4) {
     suggestions.push({
       part: "CPU",
       problem: "Low core count",
-      link: SEARCH_URLS.cpu,
+      link: "https://www.amazon.in/s?k=desktop+cpu",
       label: "Find a better CPU"
     });
   }
@@ -44,7 +43,7 @@ export function getSuggestions(specs) {
     suggestions.push({
       part: "RAM",
       problem: "Low memory",
-      link: SEARCH_URLS.ram,
+      link: `https://www.amazon.in/s?k=ddr4+ram+${specs.ram < 4 ? "8gb" : "16gb"}`,
       label: "Find more RAM"
     });
   }
@@ -52,19 +51,18 @@ export function getSuggestions(specs) {
     suggestions.push({
       part: "Storage",
       problem: "Upgrade storage to at least 256GB SSD",
-      link: SEARCH_URLS.storage,
-      label: "Find a better SSD"
+      link: `https://www.amazon.in/s?k=ssd+256gb`,
+      label: "Find a 256GB SSD"
     });
   }
   if (specs.gpu && specs.gpu.toLowerCase().includes("integrated")) {
     suggestions.push({
       part: "GPU",
       problem: "Integrated graphics detected",
-      link: SEARCH_URLS.gpu,
+      link: "https://www.amazon.in/s?k=graphics+card",
       label: "Find a dedicated GPU"
     });
   }
-
   return suggestions;
 }
 

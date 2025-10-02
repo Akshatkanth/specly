@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "../utils/axios";
 import { getSuggestions } from "../utils/suggestions";
+import { FaMicrochip, FaMemory, FaHdd, FaDesktop, FaWindows } from "react-icons/fa";
 
 const Scan = () => {
   const [scanning, setScanning] = useState(false);
@@ -42,7 +43,8 @@ const Scan = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-50 px-4 py-10">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6">Scan Your PC</h2>
+      <h2 className="text-3xl font-extrabold text-cyan-400 mb-6 text-center">Your PC Scan Results</h2>
+      <hr className="border-cyan-400 mb-8" />
 
       <button
         onClick={handleScan}
@@ -57,34 +59,49 @@ const Scan = () => {
       {error && <p className="mt-4 text-red-500 font-semibold">{error}</p>}
 
       {specs && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
           {/* CPU Card */}
-          <div className="bg-gray-900 rounded-xl shadow-lg p-6 flex flex-col items-start">
-            <h4 className="text-lg font-bold text-cyan-400 mb-2">CPU</h4>
+          <div className="bg-gray-900 rounded-xl shadow-lg p-6 transition-transform hover:scale-105 hover:shadow-cyan-400/30">
+            <div className="flex items-center mb-2">
+              <FaMicrochip className="text-cyan-400 mr-2" />
+              <h4 className="text-lg font-bold text-cyan-400">CPU</h4>
+            </div>
             <p className="text-white">Model: <span className="text-gray-300">{specs.cpu.model}</span></p>
             <p className="text-white">Cores: <span className="text-gray-300">{specs.cpu.cores}</span></p>
             <p className="text-white">Threads: <span className="text-gray-300">{specs.cpu.threads}</span></p>
             <p className="text-white">Speed: <span className="text-gray-300">{specs.cpu.speed} GHz</span></p>
           </div>
           {/* GPU Card */}
-          <div className="bg-gray-900 rounded-xl shadow-lg p-6 flex flex-col items-start">
-            <h4 className="text-lg font-bold text-cyan-400 mb-2">GPU</h4>
+          <div className="bg-gray-900 rounded-xl shadow-lg p-6 transition-transform hover:scale-105 hover:shadow-cyan-400/30">
+            <div className="flex items-center mb-2">
+              <FaDesktop className="text-cyan-400 mr-2" />
+              <h4 className="text-lg font-bold text-cyan-400">GPU</h4>
+            </div>
             <p className="text-white">Model: <span className="text-gray-300">{specs.gpu}</span></p>
           </div>
           {/* RAM Card */}
-          <div className="bg-gray-900 rounded-xl shadow-lg p-6 flex flex-col items-start">
-            <h4 className="text-lg font-bold text-cyan-400 mb-2">RAM</h4>
+          <div className="bg-gray-900 rounded-xl shadow-lg p-6 transition-transform hover:scale-105 hover:shadow-cyan-400/30">
+            <div className="flex items-center mb-2">
+              <FaMemory className="text-cyan-400 mr-2" />
+              <h4 className="text-lg font-bold text-cyan-400">RAM</h4>
+            </div>
             <p className="text-white">Total: <span className="text-gray-300">{specs.ram} GB</span></p>
           </div>
           {/* Storage Card */}
-          <div className="bg-gray-900 rounded-xl shadow-lg p-6 flex flex-col items-start">
-            <h4 className="text-lg font-bold text-cyan-400 mb-2">Storage</h4>
+          <div className="bg-gray-900 rounded-xl shadow-lg p-6 transition-transform hover:scale-105 hover:shadow-cyan-400/30">
+            <div className="flex items-center mb-2">
+              <FaHdd className="text-cyan-400 mr-2" />
+              <h4 className="text-lg font-bold text-cyan-400">Storage</h4>
+            </div>
             <p className="text-white">Size: <span className="text-gray-300">{specs.storage.size} GB</span></p>
             <p className="text-white">Type: <span className="text-gray-300">{specs.storage.type}</span></p>
           </div>
           {/* OS Card */}
-          <div className="bg-gray-900 rounded-xl shadow-lg p-6 flex flex-col items-start">
-            <h4 className="text-lg font-bold text-cyan-400 mb-2">Operating System</h4>
+          <div className="bg-gray-900 rounded-xl shadow-lg p-6 transition-transform hover:scale-105 hover:shadow-cyan-400/30">
+            <div className="flex items-center mb-2">
+              <FaWindows className="text-cyan-400 mr-2" />
+              <h4 className="text-lg font-bold text-cyan-400">Operating System</h4>
+            </div>
             <p className="text-white">Distro: <span className="text-gray-300">{specs.os.distro}</span></p>
             <p className="text-white">Arch: <span className="text-gray-300">{specs.os.arch}</span></p>
           </div>
@@ -120,6 +137,13 @@ const Scan = () => {
           ))}
         </div>
       )}
+
+      <a
+        href="/shop"
+        className="block mt-10 mx-auto bg-cyan-400 text-gray-900 font-bold px-8 py-4 rounded-xl shadow-xl hover:bg-cyan-300 transition-colors text-lg text-center w-fit"
+      >
+        Shop PC Parts
+      </a>
     </div>
   );
 };

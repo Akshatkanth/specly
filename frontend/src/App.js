@@ -8,6 +8,7 @@ import Scan from "./pages/Scan";
 import Compatibility from "./pages/Compatibility";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Shop from "./pages/Shop";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/compatibility" element={<Compatibility />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/shop" element={<Shop />} />
         </Routes>
       </div>
     </Router>
