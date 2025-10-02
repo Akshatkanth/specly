@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import axios from "../utils/axios"; // make sure axios has baseURL pointing to your backend
+import React, { useState, useEffect } from "react";
+import axios from "../utils/axios";
 
 const Scan = () => {
   const [scanning, setScanning] = useState(false);
@@ -12,28 +12,21 @@ const Scan = () => {
     setError(null);
 
     try {
-      // minimal web hardware info
-      const detectedSpecs = {
-        cpu: { cores: navigator.hardwareConcurrency || 2, model: "Unknown CPU" },
-        gpu: "Integrated GPU",
-        ram: navigator.deviceMemory || 8,
-        storage: { size: 256, type: "SSD" }
-      };
+      // Fetch hardware specs from Electron helper
+      const detectedSpecs = await window.ipcRenderer.invoke("get-specs"); // <-- preload.js must expose getSpecs
+      setSpecs(detectedSpecs);
 
-      // Send detected specs to backend
+      // Send specs to backend for analysis
       const response = await axios.post("/scan/analyze", detectedSpecs);
 
-      // set specs and results
-      setSpecs(response.data.specs);
       setResult({
         bottlenecks: response.data.bottlenecks,
         outdatedParts: response.data.outdatedParts,
         upgradeSuggestions: response.data.upgradeSuggestions
       });
-
     } catch (err) {
       console.error(err);
-      setError("Scan failed. Try again.");
+      setError("Scan failed. Please try again.");
     } finally {
       setScanning(false);
     }
@@ -58,10 +51,15 @@ const Scan = () => {
       {specs && (
         <div className="mt-10 w-full max-w-2xl bg-white rounded-xl shadow-lg p-6 space-y-4">
           <h3 className="text-2xl font-semibold text-gray-800">Your Detected Specs</h3>
-          <p><span className="font-semibold">CPU:</span> {specs.cpu.model} ({specs.cpu.cores} cores)</p>
+          <p>
+            <span className="font-semibold">CPU:</span> {specs.cpu.model} ({specs.cpu.cores} cores)
+          </p>
           <p><span className="font-semibold">GPU:</span> {specs.gpu}</p>
           <p><span className="font-semibold">RAM:</span> {specs.ram} GB</p>
-          <p><span className="font-semibold">Storage:</span> {specs.storage.size} GB {specs.storage.type}</p>
+          <p>
+            <span className="font-semibold">Storage:</span> {specs.storage.size} GB {specs.storage.type}
+          </p>
+          <p><span className="font-semibold">OS:</span> {specs.os.distro} {specs.os.arch}</p>
         </div>
       )}
 
