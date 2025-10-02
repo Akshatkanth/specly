@@ -6,7 +6,7 @@ function App() {
   const [softwareResults, setSoftwareResults] = useState(null);
 
   const handleScan = async () => {
-    // For now, send dummy specs; later, Electron helper will send real specs
+    
     const dummySpecs = {
       cpu: { model: "Intel i5", cores: 4, threads: 8, speed: 2.4 },
       gpu: { model: "Integrated", vram: 0 },
