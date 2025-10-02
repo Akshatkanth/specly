@@ -8,19 +8,36 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center p-4 bg-gray-800 text-white">
       <div className="flex items-center space-x-4">
-        <Link to="/" className="text-xl font-bold">Home</Link>
-        {user && <Link to="/scan">Scan</Link>}
-        {user && <Link to="/compatibility">Compatibility</Link>}
+        {/* Home is always visible */}
+        <Link to="/" className="text-xl font-bold">
+          Home
+        </Link>
+
+        {/* Only show Scan & Compatibility if user exists */}
+        {user ? (
+          <>
+            <Link to="/scan">Scan</Link>
+            <Link to="/compatibility">Compatibility</Link>
+          </>
+        ) : null}
       </div>
+
       <div className="space-x-4">
         {user ? (
-          <button onClick={logout} className="bg-red-500 px-3 py-1 rounded">
+          <button
+            onClick={logout}
+            className="bg-red-500 px-3 py-1 rounded hover:bg-red-600 transition"
+          >
             Logout
           </button>
         ) : (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Signup</Link>
+            <Link to="/login" className="hover:underline">
+              Login
+            </Link>
+            <Link to="/signup" className="hover:underline">
+              Signup
+            </Link>
           </>
         )}
       </div>
