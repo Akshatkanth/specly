@@ -1,44 +1,28 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 const Navbar = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
-    <nav className="flex justify-between items-center p-4 bg-gray-800 text-white">
-      <div className="flex items-center space-x-4">
-        {/* Home is always visible */}
-        <Link to="/" className="text-xl font-bold">
-          Home
-        </Link>
-
-        {/* Only show Scan & Compatibility if user exists */}
-        {user ? (
+    <nav className="bg-gray-900 px-6 py-4 flex items-center justify-between shadow-lg">
+      <a href="/" className="text-2xl font-bold text-cyan-400">Specly</a>
+      <div className="flex items-center space-x-6">
+        <a href="/scan" className="text-white hover:text-cyan-400">Scan</a>
+        <a href="/compatibility" className="text-white hover:text-cyan-400">Compatibility</a>
+        {!user ? (
           <>
-            <Link to="/scan">Scan</Link>
-            <Link to="/compatibility">Compatibility</Link>
-          </>
-        ) : null}
-      </div>
-
-      <div className="space-x-4">
-        {user ? (
-          <button
-            onClick={logout}
-            className="bg-red-500 px-3 py-1 rounded hover:bg-red-600 transition"
-          >
-            Logout
-          </button>
-        ) : (
-          <>
-            <Link to="/login" className="hover:underline">
+            <a href="/signup" className="bg-cyan-400 text-gray-900 font-semibold px-4 py-2 rounded-lg shadow hover:bg-cyan-300 transition-colors">
+              Sign Up
+            </a>
+            <a href="/login" className="bg-gray-800 text-cyan-400 font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-700 transition-colors border border-cyan-400">
               Login
-            </Link>
-            <Link to="/signup" className="hover:underline">
-              Signup
-            </Link>
+            </a>
           </>
+        ) : (
+          <button className="bg-cyan-400 text-gray-900 font-semibold px-4 py-2 rounded-lg shadow hover:bg-cyan-300 transition-colors">
+            My Account
+          </button>
         )}
       </div>
     </nav>

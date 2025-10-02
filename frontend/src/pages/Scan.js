@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "../utils/axios";
+import { getSuggestions } from "../utils/suggestions";
 
 const Scan = () => {
   const [scanning, setScanning] = useState(false);
   const [specs, setSpecs] = useState(null);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+  const [suggestions, setSuggestions] = useState([]);
 
   const handleScan = async () => {
     setScanning(true);
@@ -32,6 +34,12 @@ const Scan = () => {
     }
   };
 
+  useEffect(() => {
+    if (specs) {
+      setSuggestions(getSuggestions(specs));
+    }
+  }, [specs]);
+
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-50 px-4 py-10">
       <h2 className="text-3xl font-bold text-gray-800 mb-6">Scan Your PC</h2>
@@ -49,17 +57,37 @@ const Scan = () => {
       {error && <p className="mt-4 text-red-500 font-semibold">{error}</p>}
 
       {specs && (
-        <div className="mt-10 w-full max-w-2xl bg-white rounded-xl shadow-lg p-6 space-y-4">
-          <h3 className="text-2xl font-semibold text-gray-800">Your Detected Specs</h3>
-          <p>
-            <span className="font-semibold">CPU:</span> {specs.cpu.model} ({specs.cpu.cores} cores)
-          </p>
-          <p><span className="font-semibold">GPU:</span> {specs.gpu}</p>
-          <p><span className="font-semibold">RAM:</span> {specs.ram} GB</p>
-          <p>
-            <span className="font-semibold">Storage:</span> {specs.storage.size} GB {specs.storage.type}
-          </p>
-          <p><span className="font-semibold">OS:</span> {specs.os.distro} {specs.os.arch}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+          {/* CPU Card */}
+          <div className="bg-gray-900 rounded-xl shadow-lg p-6 flex flex-col items-start">
+            <h4 className="text-lg font-bold text-cyan-400 mb-2">CPU</h4>
+            <p className="text-white">Model: <span className="text-gray-300">{specs.cpu.model}</span></p>
+            <p className="text-white">Cores: <span className="text-gray-300">{specs.cpu.cores}</span></p>
+            <p className="text-white">Threads: <span className="text-gray-300">{specs.cpu.threads}</span></p>
+            <p className="text-white">Speed: <span className="text-gray-300">{specs.cpu.speed} GHz</span></p>
+          </div>
+          {/* GPU Card */}
+          <div className="bg-gray-900 rounded-xl shadow-lg p-6 flex flex-col items-start">
+            <h4 className="text-lg font-bold text-cyan-400 mb-2">GPU</h4>
+            <p className="text-white">Model: <span className="text-gray-300">{specs.gpu}</span></p>
+          </div>
+          {/* RAM Card */}
+          <div className="bg-gray-900 rounded-xl shadow-lg p-6 flex flex-col items-start">
+            <h4 className="text-lg font-bold text-cyan-400 mb-2">RAM</h4>
+            <p className="text-white">Total: <span className="text-gray-300">{specs.ram} GB</span></p>
+          </div>
+          {/* Storage Card */}
+          <div className="bg-gray-900 rounded-xl shadow-lg p-6 flex flex-col items-start">
+            <h4 className="text-lg font-bold text-cyan-400 mb-2">Storage</h4>
+            <p className="text-white">Size: <span className="text-gray-300">{specs.storage.size} GB</span></p>
+            <p className="text-white">Type: <span className="text-gray-300">{specs.storage.type}</span></p>
+          </div>
+          {/* OS Card */}
+          <div className="bg-gray-900 rounded-xl shadow-lg p-6 flex flex-col items-start">
+            <h4 className="text-lg font-bold text-cyan-400 mb-2">Operating System</h4>
+            <p className="text-white">Distro: <span className="text-gray-300">{specs.os.distro}</span></p>
+            <p className="text-white">Arch: <span className="text-gray-300">{specs.os.arch}</span></p>
+          </div>
         </div>
       )}
 
@@ -69,6 +97,27 @@ const Scan = () => {
           <p><span className="font-semibold">Bottlenecks:</span> {result.bottlenecks.join(", ") || "None"}</p>
           <p><span className="font-semibold">Outdated Parts:</span> {result.outdatedParts.join(", ") || "None"}</p>
           <p><span className="font-semibold">Upgrade Suggestions:</span> {result.upgradeSuggestions.join(", ") || "None"}</p>
+        </div>
+      )}
+
+      {suggestions.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          {suggestions.map((s, idx) => (
+            <div key={idx} className="bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col justify-between">
+              <div>
+                <h4 className="text-lg font-bold text-cyan-400 mb-2">{s.part} Suggestion</h4>
+                <p className="text-white mb-2">{s.problem}</p>
+              </div>
+              <a
+                href={s.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 bg-cyan-400 text-gray-900 font-semibold px-4 py-2 rounded-lg shadow hover:bg-cyan-300 transition-colors text-center"
+              >
+                {s.label}
+              </a>
+            </div>
+          ))}
         </div>
       )}
     </div>
