@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const authRoutes = require("./routes/auth");
 
 const scanRoutes = require('./routes/scan');
 const compatibilityRoutes = require('./routes/compatibility');
@@ -10,6 +11,8 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/auth", authRoutes);
 
 // MongoDB Connection
 mongoose.connect('mongodb://localhost:27017/pcChecker')
