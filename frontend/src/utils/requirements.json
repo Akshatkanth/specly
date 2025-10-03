@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Adobe Photoshop",
+    "type": "software",
+    "min": { "cpu": "Intel Core 2 Duo", "ram": 4, "gpu": "Any" },
+    "rec": { "cpu": "Intel Core i5", "ram": 8, "gpu": "Any" }
+  },
+  {
+    "name": "Adobe Premiere Pro",
+    "type": "software",
+    "min": { "cpu": "Intel 6th Gen", "ram": 8, "gpu": "Intel HD 530" },
+    "rec": { "cpu": "Intel Core i7", "ram": 16, "gpu": "NVIDIA GTX 1060" }
+  },
+  {
+    "name": "AutoCAD",
+    "type": "engineering",
+    "min": { "cpu": "2.5 GHz", "ram": 8, "gpu": "Any" },
+    "rec": { "cpu": "3+ GHz", "ram": 16, "gpu": "NVIDIA Quadro" }
+  },
+  {
+    "name": "SolidWorks",
+    "type": "engineering",
+    "min": { "cpu": "Intel Core i3", "ram": 8, "gpu": "Any" },
+    "rec": { "cpu": "Intel Core i7", "ram": 16, "gpu": "NVIDIA Quadro" }
+  },
+  {
+    "name": "MATLAB",
+    "type": "engineering",
+    "min": { "cpu": "Any", "ram": 4, "gpu": "Any" },
+    "rec": { "cpu": "Intel Core i5", "ram": 8, "gpu": "Any" }
+  },
+  {
+    "name": "Microsoft Office",
+    "type": "software",
+    "min": { "cpu": "1.6 GHz", "ram": 2, "gpu": "Any" },
+    "rec": { "cpu": "2+ GHz", "ram": 4, "gpu": "Any" }
+  },
+  {
+    "name": "Blender",
+    "type": "software",
+    "min": { "cpu": "Dual Core 2GHz", "ram": 4, "gpu": "Any" },
+    "rec": { "cpu": "Quad Core", "ram": 16, "gpu": "GTX 10 Series" }
+  },
+  {
+    "name": "Eclipse IDE",
+    "type": "software",
+    "min": { "cpu": "Any", "ram": 2, "gpu": "Any" },
+    "rec": { "cpu": "Any", "ram": 4, "gpu": "Any" }
+  },
+  {
+    "name": "Visual Studio Code",
+    "type": "software",
+    "min": { "cpu": "Any", "ram": 2, "gpu": "Any" },
+    "rec": { "cpu": "Any", "ram": 4, "gpu": "Any" }
+  },
+  {
+    "name": "ANSYS",
+    "type": "engineering",
+    "min": { "cpu": "Intel Core i5", "ram": 8, "gpu": "Any" },
+    "rec": { "cpu": "Intel Core i7", "ram": 16, "gpu": "NVIDIA Quadro" }
+  },
+  {
+    "name": "Cyberpunk 2077",
+    "type": "game",
+    "min": { "cpu": "Intel Core i5-3570K", "ram": 8, "gpu": "GTX 780" },
+    "rec": { "cpu": "Intel Core i7-4790", "ram": 12, "gpu": "GTX 1060" }
+  },
+  {
+    "name": "Valorant",
+    "type": "game",
+    "min": { "cpu": "Intel Core 2 Duo E8400", "ram": 4, "gpu": "Intel HD 4000" },
+    "rec": { "cpu": "Intel i3-4150", "ram": 8, "gpu": "Geforce GT 730" }
+  },
+  {
+    "name": "GTA V",
+    "type": "game",
+    "min": { "cpu": "Intel Core 2 Quad Q6600", "ram": 4, "gpu": "NVIDIA 9800 GT" },
+    "rec": { "cpu": "Intel Core i5 3470", "ram": 8, "gpu": "NVIDIA GTX 660" }
+  },
+  {
+    "name": "Minecraft",
+    "type": "game",
+    "min": { "cpu": "Intel Core i3-3210", "ram": 4, "gpu": "Intel HD 4000" },
+    "rec": { "cpu": "Intel Core i5-4690", "ram": 8, "gpu": "NVIDIA GTX 700" }
+  },
+  {
+    "name": "Fortnite",
+    "type": "game",
+    "min": { "cpu": "Core i3-3225", "ram": 4, "gpu": "Intel HD 4000" },
+    "rec": { "cpu": "Core i5-7300U", "ram": 8, "gpu": "NVIDIA GTX 960" }
+  },
+  {
+    "name": "PUBG",
+    "type": "game",
+    "min": { "cpu": "Intel Core i5-4430", "ram": 8, "gpu": "NVIDIA GTX 960" },
+    "rec": { "cpu": "Intel Core i5-6600K", "ram": 16, "gpu": "NVIDIA GTX 1060" }
+  },
+  {
+    "name": "Call of Duty: Warzone",
+    "type": "game",
+    "min": { "cpu": "Intel Core i3-4340", "ram": 8, "gpu": "GTX 670" },
+    "rec": { "cpu": "Intel Core i5-2500K", "ram": 12, "gpu": "GTX 970" }
+  },
+  {
+    "name": "League of Legends",
+    "type": "game",
+    "min": { "cpu": "2 GHz", "ram": 2, "gpu": "Any" },
+    "rec": { "cpu": "3 GHz", "ram": 4, "gpu": "Any" }
+  },
+  {
+    "name": "Counter-Strike: Global Offensive",
+    "type": "game",
+    "min": { "cpu": "Intel Core 2 Duo E6600", "ram": 2, "gpu": "NVIDIA GeForce 7300 GT" },
+    "rec": { "cpu": "Intel Core i5-2300", "ram": 4, "gpu": "NVIDIA GeForce GTX 1050 Ti" }
+  },
+  {
+    "name": "FIFA 23",
+    "type": "game",
+    "min": { "cpu": "Intel Core i5-6600k", "ram": 8, "gpu": "NVIDIA GTX 1050 Ti" },
+    "rec": { "cpu": "Intel Core i7-6700", "ram": 12, "gpu": "NVIDIA GTX 1660" }
+  }
+]

@@ -19,6 +19,9 @@ const Scan = () => {
       const detectedSpecs = await window.ipcRenderer.invoke("get-specs"); // <-- preload.js must expose getSpecs
       setSpecs(detectedSpecs);
 
+      // Save specs to localStorage for compatibility check
+      localStorage.setItem("speclySpecs", JSON.stringify(detectedSpecs));
+
       // Send specs to backend for analysis
       const response = await axios.post("/scan/analyze", detectedSpecs);
 
