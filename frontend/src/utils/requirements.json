@@ -118,5 +118,23 @@
     "type": "game",
     "min": { "cpu": "Intel Core i5-6600k", "ram": 8, "gpu": "NVIDIA GTX 1050 Ti" },
     "rec": { "cpu": "Intel Core i7-6700", "ram": 12, "gpu": "NVIDIA GTX 1660" }
+  },
+  {
+    "name": "Microsoft Flight Simulator 2020",
+    "type": "game",
+    "min": { "cpu": "Intel Core i5-4460", "ram": 24, "gpu": "NVIDIA GTX 770" },
+    "rec": { "cpu": "Intel Core i5-8400", "ram": 32, "gpu": "NVIDIA GTX 970" }
+  },
+  {
+    "name": "Hogwarts Legacy",
+    "type": "game",
+    "min": { "cpu": "Intel Core i5-6600", "ram": 16, "gpu": "NVIDIA GTX 960" },
+    "rec": { "cpu": "Intel Core i7-10700K", "ram": 32, "gpu": "NVIDIA RTX 3090" }
+  },
+  {
+    "name": "Star Citizen",
+    "type": "game",
+    "min": { "cpu": "Quad Core CPU", "ram": 16, "gpu": "NVIDIA GTX 970" },
+    "rec": { "cpu": "Hexa Core CPU", "ram": 32, "gpu": "NVIDIA RTX 3080" }
   }
 ]

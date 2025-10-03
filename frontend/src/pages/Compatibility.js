@@ -6,6 +6,33 @@ const getSavedSpecs = () => {
   return specs ? JSON.parse(specs) : null;
 };
 
+function isBetterHardware(userPart, reqPart) {
+  // If "Any", always compatible
+  if (!reqPart || reqPart === "Any") return true;
+  if (!userPart) return false;
+
+  // Lowercase for comparison
+  const user = userPart.toLowerCase();
+  const req = reqPart.toLowerCase();
+
+  // Brand check
+  if (req.includes("intel") && !user.includes("intel")) return false;
+  if (req.includes("amd") && !user.includes("amd")) return false;
+  if (req.includes("nvidia") && !user.includes("nvidia")) return false;
+
+  // Extract numbers for basic comparison
+  const userNum = parseInt(user.replace(/\D/g, ""));
+  const reqNum = parseInt(req.replace(/\D/g, ""));
+
+  // If numbers exist, compare them
+  if (userNum && reqNum && userNum >= reqNum) return true;
+
+  // Fallback: substring match
+  if (user.includes(req)) return true;
+
+  return false;
+}
+
 function compareSpecs(user, reqMin, reqRec) {
   if (!user) return { status: "No scan data found.", suggestion: "" };
 
@@ -20,29 +47,19 @@ function compareSpecs(user, reqMin, reqRec) {
   }
   if (reqRec && user.ram < reqRec.ram) meetsRec = false;
 
-  // CPU check (basic: allow partial match or newer gen)
-  if (user.cpu && reqMin.cpu && user.cpu.model) {
-    const cpuMatch =
-      user.cpu.model.toLowerCase().includes(reqMin.cpu.toLowerCase()) ||
-      user.cpu.model.toLowerCase().includes(reqRec?.cpu?.toLowerCase() || "");
-    if (!cpuMatch) {
-      meetsMin = false;
-      issues.push("CPU");
-    }
-    if (reqRec && !user.cpu.model.toLowerCase().includes(reqRec.cpu.toLowerCase())) meetsRec = false;
+  // CPU check (improved)
+  if (!isBetterHardware(user.cpu?.model, reqMin.cpu)) {
+    meetsMin = false;
+    issues.push("CPU");
   }
+  if (reqRec && !isBetterHardware(user.cpu?.model, reqRec.cpu)) meetsRec = false;
 
-  // GPU check (basic: allow partial match or newer gen)
-  if (user.gpu && reqMin.gpu && reqMin.gpu !== "Any") {
-    const gpuMatch =
-      user.gpu.toLowerCase().includes(reqMin.gpu.toLowerCase()) ||
-      user.gpu.toLowerCase().includes(reqRec?.gpu?.toLowerCase() || "");
-    if (!gpuMatch) {
-      meetsMin = false;
-      issues.push("GPU");
-    }
-    if (reqRec && reqRec.gpu !== "Any" && !user.gpu.toLowerCase().includes(reqRec.gpu.toLowerCase())) meetsRec = false;
+  // GPU check (improved)
+  if (!isBetterHardware(user.gpu, reqMin.gpu)) {
+    meetsMin = false;
+    issues.push("GPU");
   }
+  if (reqRec && !isBetterHardware(user.gpu, reqRec.gpu)) meetsRec = false;
 
   if (meetsRec) {
     return {

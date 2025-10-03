@@ -22,9 +22,16 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = async (token) => {
-    localStorage.setItem('token', token);
-    await fetchUser(); // fetch user after login
+  const login = async (email, password) => {
+    const res = await axios.post('/auth/login', { email, password });
+    if (res.data.token && res.data.user) {
+      localStorage.setItem('token', res.data.token);
+      setUser(res.data.user);
+      localStorage.setItem('speclyUser', JSON.stringify(res.data.user));
+      return res.data.user;
+    } else {
+      throw new Error('Login failed');
+    }
   };
 
   const logout = () => {

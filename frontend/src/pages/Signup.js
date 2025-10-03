@@ -1,34 +1,46 @@
 import React, { useState, useContext } from "react";
-import axios from "axios";
-import AuthContext from "../context/AuthContext";
+import axios from "../utils/axios";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 const Signup = () => {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [message, setMessage] = useState("");
-  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage("");
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/signup", form);
-      localStorage.setItem("token", res.data.token);
-      login(res.data.token);
-      setMessage("Signup successful!");
-      navigate("/"); // Redirect to home
+      const res = await axios.post("/auth/signup", form);
+      if (res.data && res.data.token) {
+        setMessage("Signup successful! Redirecting to login...");
+        setTimeout(() => navigate("/login"), 1500);
+      } else {
+        setMessage("Signup failed. Please try again.");
+      }
     } catch (err) {
-      setMessage(err.response?.data?.msg || "Signup failed");
+      setMessage(
+        err.response?.data?.msg ||
+          err.response?.data?.message ||
+          "Signup failed. Please try again."
+      );
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-950 px-4">
-      <div className="w-full max-w-md bg-gray-900 rounded-xl shadow-lg p-8">
-        <h2 className="text-3xl font-bold text-white mb-6 text-center">Sign Up</h2>
-        {message && <p className="text-center text-cyan-400 mb-4">{message}</p>}
+    <div className="flex items-center justify-center min-h-screen bg-black px-4">
+      <div className="w-full max-w-md bg-[#181A1B] rounded-xl shadow-xl p-8 border border-[#2176FF]/30">
+        <h2 className="text-3xl font-bold text-[#2176FF] mb-6 text-center">
+          Sign Up
+        </h2>
+        {message && (
+          <p className="text-center text-[#2176FF] mb-4">{message}</p>
+        )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
@@ -36,8 +48,8 @@ const Signup = () => {
             placeholder="Name"
             value={form.name}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
             required
+            className="w-full px-4 py-3 rounded-lg bg-black text-white border border-[#2176FF] focus:outline-none"
           />
           <input
             type="email"
@@ -45,8 +57,8 @@ const Signup = () => {
             placeholder="Email"
             value={form.email}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
             required
+            className="w-full px-4 py-3 rounded-lg bg-black text-white border border-[#2176FF] focus:outline-none"
           />
           <input
             type="password"
@@ -54,19 +66,24 @@ const Signup = () => {
             placeholder="Password"
             value={form.password}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-700 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
             required
+            className="w-full px-4 py-3 rounded-lg bg-black text-white border border-[#2176FF] focus:outline-none"
           />
           <button
             type="submit"
-            className="w-full bg-cyan-400 text-gray-900 font-semibold py-3 rounded-lg shadow hover:bg-cyan-300 transition-colors"
+            className="w-full bg-black border-2 border-[#2176FF] text-white font-bold py-3 rounded-lg shadow hover:bg-[#2176FF] hover:text-white transition-all"
           >
             Sign Up
           </button>
         </form>
         <p className="mt-4 text-center text-gray-400">
           Already have an account?{" "}
-          <a href="/login" className="text-cyan-400 hover:underline">Login</a>
+          <a
+            href="/login"
+            className="text-[#2176FF] hover:underline"
+          >
+            Login
+          </a>
         </p>
       </div>
     </div>

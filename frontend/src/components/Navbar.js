@@ -7,33 +7,61 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white/5 backdrop-blur-xl shadow-lg border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-        <Link to="/" className="text-2xl font-bold text-[#2176FF] drop-shadow-lg">
-          Specly
-        </Link>
-        <div className="flex items-center space-x-6">
-          <Link to="/scan" className="text-white/90 hover:text-[#2176FF] font-medium transition-colors">
+      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center">
+        <div className="flex-1 flex items-center">
+          <Link
+            to="/"
+            className="text-3xl font-extrabold text-[#2176FF] drop-shadow-lg tracking-tight"
+            style={{
+              fontWeight: 900,
+              letterSpacing: "-1px",
+              textShadow: "0 2px 12px #2176FF55",
+            }}
+          >
+            Specly
+          </Link>
+        </div>
+        <div className="flex items-center space-x-6 justify-end flex-1">
+          <Link
+            to="/scan"
+            className="text-white/90 hover:text-[#2176FF] font-medium transition-colors"
+          >
             Scan
           </Link>
-          <Link to="/compatibility" className="text-white/90 hover:text-[#2176FF] font-medium transition-colors">
+          <Link
+            to="/compatibility"
+            className="text-white/90 hover:text-[#2176FF] font-medium transition-colors"
+          >
             Compatibility
           </Link>
-          <Link to="/shop" className="text-white/90 hover:text-[#2176FF] font-medium transition-colors">
+          <Link
+            to="/shop"
+            className="text-white/90 hover:text-[#2176FF] font-medium transition-colors"
+          >
             Shop
           </Link>
           {!user ? (
             <>
-              <Link to="/signup" className="px-4 py-2 rounded-lg bg-[#2176FF] text-white font-semibold shadow hover:bg-white hover:text-[#2176FF] border-2 border-[#2176FF] transition-colors">
+              <Link
+                to="/signup"
+                className="text-white/90 hover:text-[#2176FF] font-medium transition-colors"
+              >
                 Sign Up
               </Link>
-              <Link to="/login" className="px-4 py-2 rounded-lg border border-white/30 text-white font-semibold hover:bg-[#2176FF] hover:text-white transition-colors">
+              <Link
+                to="/login"
+                className="text-white/90 hover:text-[#2176FF] font-medium transition-colors"
+              >
                 Login
               </Link>
             </>
           ) : (
-            <button className="bg-cyan-400 text-gray-900 font-semibold px-4 py-2 rounded-lg shadow hover:bg-cyan-300 transition-colors">
+            <Link
+              to="/account"
+              className="bg-cyan-400 text-gray-900 font-semibold px-4 py-2 rounded-lg shadow hover:bg-cyan-300 transition-colors"
+            >
               My Account
-            </button>
+            </Link>
           )}
         </div>
       </div>
