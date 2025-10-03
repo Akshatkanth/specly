@@ -9,6 +9,7 @@ import Compatibility from "./pages/Compatibility";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Shop from "./pages/Shop";
+import Account from "./pages/Account";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/account" element={<Account />} />
       </Routes>
     </Router>
   );

@@ -17,9 +17,8 @@ const Account = () => {
   }, [user, setUser]);
 
   const handleLogout = () => {
-    setUser(null);
     localStorage.removeItem("speclyUser");
-    // Optionally redirect to home
+    window.location.reload();
   };
 
   if (loading) {

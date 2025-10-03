@@ -1,7 +1,8 @@
 import React from "react";
 import bgStars from "./assets/bg.jpg";
 import hardwareScanImg from "./assets/hardwarescan.png";
-import bottleneckImg from "./assets/bottleneck.jpg"; // Save the new image as bottleneck.jpg in src/pages/assets/
+import bottleneckImg from "./assets/bottleneck.jpg"; 
+import logo from "./assets/main.jpg"
 
 const accentBlue = "#2176FF";
 
@@ -28,8 +29,13 @@ const Home = () => {
         {/* Hero Section */}
         <section className="w-full flex flex-col items-center justify-center py-20">
           {/* Hero Image Placeholder */}
-          <div className="w-40 h-40 bg-gradient-to-tr from-black to-[#2176FF] rounded-full flex items-center justify-center mb-8 shadow-2xl border-4 border-[#2176FF]">
-            <span className="text-4xl text-white/80 font-bold">Image</span>
+          <div className="w-40 h-40 rounded-full flex items-center justify-center mb-5 shadow-2xl border-4 border-[#181A1B] bg-gradient-to-tr from-black to-[#2176FF]">
+            <img
+              src={logo}
+              alt="Specly Logo"
+              className="w-full h-full object-cover rounded-full"
+              style={{ boxShadow: "0 4px 24px 0 rgba(2, 18, 42, 1)" }}
+            />
           </div>
           <h1
             className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#2176FF] to-white text-center drop-shadow-lg mb-2"
@@ -86,11 +92,13 @@ const Home = () => {
               Find out which parts are slowing down your system.
             </p>
           </div>
-          {/* Feature Card 3 */}
+          {/* Feature Card 3 - Upgrade Suggestions */}
           <div className="bg-black/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 flex flex-col items-center border border-[#2176FF]/40 hover:border-[#2176FF] transition-all">
-            <div className="w-16 h-16 bg-gradient-to-tr from-black to-[#2176FF] rounded-full flex items-center justify-center mb-4 border-2 border-black">
-              <span className="text-xl text-white/80">Image</span>
-            </div>
+            <img
+              src={require("./assets/upgrade.jpg")} // Use your new image file name and path
+              alt="Upgrade Suggestions"
+              className="w-24 h-24 object-cover rounded-xl mb-4 border-2 border-black shadow-lg"
+            />
             <h3 className="text-2xl font-bold text-[#2176FF] mb-2 text-center">
               Upgrade Suggestions
             </h3>

@@ -58,7 +58,8 @@ const Navbar = () => {
           ) : (
             <Link
               to="/account"
-              className="bg-cyan-400 text-gray-900 font-semibold px-4 py-2 rounded-lg shadow hover:bg-cyan-300 transition-colors"
+              className="px-6 py-2 rounded-xl font-bold bg-black border-2 border-[#2176FF] text-white shadow hover:bg-[#2176FF] hover:text-white transition-colors"
+              style={{ boxShadow: "0 2px 8px #2176FF33" }}
             >
               My Account
             </Link>

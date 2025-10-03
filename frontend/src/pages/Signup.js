@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "../utils/axios";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import bgStars from "./assets/bg.jpg"; // Add this import
 
 const Signup = () => {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -33,8 +34,25 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black px-4">
-      <div className="w-full max-w-md bg-[#181A1B] rounded-xl shadow-xl p-8 border border-[#2176FF]/30">
+    <div
+      className="flex items-center justify-center min-h-screen px-4 relative"
+      style={{
+        backgroundImage: `url(${bgStars})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#000",
+      }}
+    >
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(0,0,0,0.95) 80%, #2176FF 120%)",
+          opacity: 0.85,
+        }}
+      ></div>
+      <div className="relative w-full max-w-md bg-[#181A1B] rounded-xl shadow-xl p-8 border border-[#2176FF]/30">
         <h2 className="text-3xl font-bold text-[#2176FF] mb-6 text-center">
           Sign Up
         </h2>
