@@ -95,7 +95,7 @@ const Home = () => {
           {/* Feature Card 3 - Upgrade Suggestions */}
           <div className="bg-black/80 backdrop-blur-lg rounded-2xl shadow-xl p-8 flex flex-col items-center border border-[#2176FF]/40 hover:border-[#2176FF] transition-all">
             <img
-              src={require("./assets/upgrade.jpg")} // Use your new image file name and path
+              src={require("./assets/upgrade.jpg")} 
               alt="Upgrade Suggestions"
               className="w-24 h-24 object-cover rounded-xl mb-4 border-2 border-black shadow-lg"
             />

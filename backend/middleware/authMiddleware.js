@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-require("dotenv").config(); // Load .env variables
+require("dotenv").config(); 
 
 function authMiddleware(req, res, next) {
   const authHeader = req.headers["authorization"];
@@ -13,9 +13,9 @@ function authMiddleware(req, res, next) {
   }
 
   try {
-    // Use JWT_SECRET from .env
+    
     const decoded = jwt.verify(token, process.env.JWT_SECRET); 
-    req.user = decoded; // { id, email }
+    req.user = decoded; 
     next();
   } catch (err) {
     return res.status(403).json({ message: "Invalid or expired token" });

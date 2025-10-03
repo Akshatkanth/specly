@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "../utils/axios";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import bgStars from "./assets/bg.jpg"; // Use the same background as Signup.js
+import bgStars from "./assets/bg.jpg"; 
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });

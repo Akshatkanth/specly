@@ -5,7 +5,7 @@ const Account = () => {
   const { user, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
 
-  // Load user from localStorage if context is empty
+  
   useEffect(() => {
     if (!user) {
       const storedUser = localStorage.getItem("speclyUser");

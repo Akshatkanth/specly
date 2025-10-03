@@ -12,7 +12,7 @@ function isBetterHardware(userPart, reqPart) {
   if (!reqPart || reqPart === "Any") return true;
   if (!userPart) return false;
 
-  // Lowercase for comparison
+  
   const user = userPart.toLowerCase();
   const req = reqPart.toLowerCase();
 
@@ -21,11 +21,11 @@ function isBetterHardware(userPart, reqPart) {
   if (req.includes("amd") && !user.includes("amd")) return false;
   if (req.includes("nvidia") && !user.includes("nvidia")) return false;
 
-  // Extract numbers for basic comparison
+  
   const userNum = parseInt(user.replace(/\D/g, ""));
   const reqNum = parseInt(req.replace(/\D/g, ""));
 
-  // If numbers exist, compare them
+  
   if (userNum && reqNum && userNum >= reqNum) return true;
 
   // Fallback: substring match
